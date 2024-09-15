@@ -172,7 +172,7 @@ watch(dataSetId, (newVal) => {
                     <div class="flex flex-col md:flex-row gap-8">
                         <div class="md:w-1/2">
                             <div class="card flex flex-col gap-4">
-                                <div class="font-semibold text-xl" >提示词</div>
+                                <div class="font-semibold text-xl" >Prompt</div>
                                 <FloatLabel>
                                     <Textarea v-model="peValue" rows="15" cols="30" />
                                     <label>Prompt</label>
@@ -186,12 +186,12 @@ watch(dataSetId, (newVal) => {
                         </div>
                         <div class="md:w-1/2">
                             <div class="card flex flex-col gap-4">
-                                <div class="font-semibold text-xl" >数据预览</div>
+                                <div class="font-semibold text-xl" >Data Preview</div>
                                 
                                 <div style="overflow-y: scroll;  height: 360px;">
                                     <li class="flex flex-col md:flex-row md:items-center md:justify-between mb-6" v-for="item in previewData" :key="item.id">
                                         <Card style="width: 100%;">
-                                            <template #title>用户：{{item.customer}}，评分：{{item.rating}}</template>
+                                            <template #title>User: {{item.customer}}，Rating: {{item.rating}}</template>
                                             <template #content>
                                                 <p class="m-0">
                                                     {{item.review}}
@@ -215,7 +215,7 @@ watch(dataSetId, (newVal) => {
                     <div class="flex flex-col md:flex-row gap-8">
                         <div class="md:w-1/2">
                             <div class="card flex flex-col gap-4">
-                                <div class="font-semibold text-xl" >提示词</div>
+                                <div class="font-semibold text-xl" >Prompt</div>
                                 <FloatLabel>
                                     <Textarea v-model="peValue" rows="15" cols="30" />
                                     <label>Prompt</label>
@@ -229,12 +229,12 @@ watch(dataSetId, (newVal) => {
                         </div>
                         <div class="md:w-1/2">
                             <div class="card flex flex-col gap-4">
-                                <div class="font-semibold text-xl" >数据预览</div>
+                                <div class="font-semibold text-xl" >Data Preview</div>
                                 
                                 <div style="overflow-y: scroll;  height: 360px;">
                                     <li class="flex flex-col md:flex-row md:items-center md:justify-between mb-6" v-for="item in previewData" :key="item.id">
                                         <Card style="width: 100%;">
-                                            <template #title>用户：{{item.customer}}，评分：{{item.rating}}</template>
+                                            <template #title>User: {{item.customer}}，Rating: {{item.rating}}</template>
                                             <template #content>
                                                 <p class="m-0">
                                                     {{item.review}}
@@ -263,7 +263,7 @@ watch(dataSetId, (newVal) => {
 
         <div class="flex mt-8">
             <div class="card flex flex-col gap-4 w-full">
-                <div class="font-semibold text-xl">标签
+                <div class="font-semibold text-xl">Tags
                    
                 </div>
 
