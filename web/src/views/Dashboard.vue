@@ -24,7 +24,7 @@ const moBarData = ref(null);
 const setpqChartData = (data) => {
     const documentStyle = getComputedStyle(document.body);
     return {
-        labels: ['正向', '负向'],
+        labels: ['Positive', 'Negative'],
         datasets: [
             {
                 data: [data.advantages,data.disadvantages],
@@ -41,11 +41,11 @@ const setpqBarData= (data) => {
     const documentStyle = getComputedStyle(document.documentElement);
 
     return {
-        labels: ["优点","缺点","期望","动机数量"],
+        labels: ["advantages","disadvantages","expectations","motivations"],
         datasets: [
             {
                 type: 'bar',
-                label: '标签数',
+                label: 'Total tags',
                 backgroundColor: documentStyle.getPropertyValue('--p-primary-400'),
                 data: [data.advantages,data.disadvantages,data.motivations,data.expectations],
                 barThickness: 32
@@ -62,7 +62,7 @@ const setexBarData= (data) => {
         datasets: [
             {
                 type: 'bar',
-                label: '标签百分比',
+                label: 'Tag percentage',
                 backgroundColor: documentStyle.getPropertyValue('--p-primary-400'),
                 data: data.data,
                 barThickness: 32
@@ -79,7 +79,7 @@ const setmoBarData= (data) => {
         datasets: [
             {
                 type: 'bar',
-                label: '标签百分比',
+                label: 'Tag percentage',
                 backgroundColor: documentStyle.getPropertyValue('--p-primary-400'),
                 data: data.data,
                 barThickness: 32
@@ -184,7 +184,7 @@ function getMetric() {
             <div class="card mb-0">
                 <div class="flex justify-between mb-4">
                     <div>
-                        <span class="block text-muted-color font-medium mb-4">评论总数</span>
+                        <span class="block text-muted-color font-medium mb-4">Total number of reviews</span>
                         <div class="text-surface-900 dark:text-surface-0 font-medium text-xl"> {{analysisMetric.review_total_count}} </div>
                     </div>
                     <div class="flex items-center justify-center bg-blue-100 dark:bg-blue-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
@@ -192,14 +192,14 @@ function getMetric() {
                     </div>
                 </div>
                 <span class="text-primary font-medium">{{tagTotalCount.advantages + tagTotalCount.disadvantages + tagTotalCount.motivations + tagTotalCount.expectations }}</span>
-                <span class="text-muted-color">总标签</span>
+                <span class="text-muted-color">Total tags</span>
             </div>
         </div>
         <div class="col-span-12 lg:col-span-6 xl:col-span-3">
             <div class="card mb-0">
                 <div class="flex justify-between mb-4">
                     <div>
-                        <span class="block text-muted-color font-medium mb-4">正向标签</span>
+                        <span class="block text-muted-color font-medium mb-4">Positive tags</span>
                         <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">{{tagTotalCount.advantages }}</div>
                     </div>
                     <div class="flex items-center justify-center bg-orange-100 dark:bg-orange-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
@@ -207,14 +207,14 @@ function getMetric() {
                     </div>
                 </div>
                 <span class="text-primary font-medium">{{ parseFloat( tagTotalCount.advantages / (tagTotalCount.advantages + tagTotalCount.disadvantages + tagTotalCount.motivations + tagTotalCount.expectations)*100 ).toFixed(2)}} %</span>
-                <span class="text-muted-color">标签占比</span>
+                <span class="text-muted-color">Tag percentage</span>
             </div>
         </div>
         <div class="col-span-12 lg:col-span-6 xl:col-span-3">
             <div class="card mb-0">
                 <div class="flex justify-between mb-4">
                     <div>
-                        <span class="block text-muted-color font-medium mb-4">购买动机</span>
+                        <span class="block text-muted-color font-medium mb-4">Purchase motivation</span>
                         <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">{{tagTotalCount.motivations }}</div>
                     </div>
                     <div class="flex items-center justify-center bg-cyan-100 dark:bg-cyan-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
@@ -222,14 +222,14 @@ function getMetric() {
                     </div>
                 </div>
                 <span class="text-primary font-medium">{{ parseFloat( tagTotalCount.motivations / (tagTotalCount.advantages + tagTotalCount.disadvantages + tagTotalCount.motivations + tagTotalCount.expectations) *100 ).toFixed(2)}} % </span>
-                <span class="text-muted-color">标签占比</span>
+                <span class="text-muted-color">Tag percentage</span>
             </div>
         </div>
         <div class="col-span-12 lg:col-span-6 xl:col-span-3">
             <div class="card mb-0">
                 <div class="flex justify-between mb-4">
                     <div>
-                        <span class="block text-muted-color font-medium mb-4">期望</span>
+                        <span class="block text-muted-color font-medium mb-4">Expectations</span>
                         <div class="text-surface-900 dark:text-surface-0 font-medium text-xl">{{tagTotalCount.expectations }}</div>
                     </div>
                     <div class="flex items-center justify-center bg-purple-100 dark:bg-purple-400/10 rounded-border" style="width: 2.5rem; height: 2.5rem">
@@ -237,20 +237,20 @@ function getMetric() {
                     </div>
                 </div>
                 <span class="text-primary font-medium">{{ parseFloat( tagTotalCount.expectations / (tagTotalCount.advantages + tagTotalCount.disadvantages + tagTotalCount.motivations + tagTotalCount.expectations)*100 ).toFixed(2)}} % </span>
-                <span class="text-muted-color">标签占比</span>
+                <span class="text-muted-color">Tag percentage</span>
             </div>
         </div>
         
 
         <div class="col-span-12 xl:col-span-6">
             <div class="card">
-                <div class="font-semibold text-xl mb-4">正负向评论占比</div>
+                <div class="font-semibold text-xl mb-4">Positive and negative review percentage</div>
                 <Chart type="pie" :data="pqchartData" :options="pqchartOptions" class="w-full md:w-[25rem]" />
             </div>
         </div>
         <div class="col-span-12 xl:col-span-6">
             <div class="card">
-                <div class="font-semibold text-xl mb-4">优点、缺点、期望、动机数量</div>
+                <div class="font-semibold text-xl mb-4">Number of advantages, disadvantages, expectations, and motivations</div>
                 <Chart type="bar" :data="pqBarData" :options="pqchartOptions" />
                 
             </div>
@@ -259,11 +259,11 @@ function getMetric() {
 
         <div class="col-span-12 xl:col-span-6">
             <div class="card">
-                <div class="font-semibold text-xl mb-4">正向评论</div>
+                <div class="font-semibold text-xl mb-4">Positive reviews</div>
                 <DataTable :value="termPercentage.advantages" :rows="8" :paginator="true" responsiveLayout="scroll">
                 
-                    <Column field="0" header="标签" style="width: 65%"></Column>
-                    <Column field="1" header="占比" :sortable="true" style="width: 35%"></Column>
+                    <Column field="0" header="Tag" style="width: 65%"></Column>
+                    <Column field="1" header="Percentage" :sortable="true" style="width: 35%"></Column>
                    
                 </DataTable>
             </div>
@@ -272,7 +272,7 @@ function getMetric() {
 
             <div class="card">
                 <div class="flex justify-between items-center mb-6">
-                    <div class="font-semibold text-xl">负面评论</div>
+                    <div class="font-semibold text-xl">Negative reviews</div>
                 </div>
                 <ul class="list-none p-0 m-0" style="overflow-y: scroll;height: 480px;"> 
                     <li class="flex flex-col md:flex-row md:items-center md:justify-between mb-6" v-for="item in termPercentage.disadvantages" :key="item.id">
@@ -295,12 +295,12 @@ function getMetric() {
 
         <div class="col-span-12 xl:col-span-6">
             <div class="card">
-                <div class="font-semibold text-xl mb-4">购买动机</div>
+                <div class="font-semibold text-xl mb-4">Purchase motivation</div>
                 <Chart type="bar" :data="moBarData" :options="pqchartOptions" class="h-80" />
             </div>
 
             <div class="card">
-                <div class="font-semibold text-xl mb-4">期望</div>
+                <div class="font-semibold text-xl mb-4">Expectations</div>
                 <Chart type="bar" :data="exBarData" :options="chartAreaOptions" class="h-[30rem]"  :indexAxis="y" />
             
 
