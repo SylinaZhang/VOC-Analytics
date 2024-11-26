@@ -648,7 +648,7 @@ Resources:
               result = {}
               # 提取 aspects tags
               advantage_tags = tags_data.get('advantages', [])
-              disadvantage_tags = tags_data.get('advantages', [])
+              disadvantage_tags = tags_data.get('disadvantages', [])
               motivations_tags = tags_data.get('motivations', [])
               expectations_tags = tags_data.get('expectations', []) 
               try: 
