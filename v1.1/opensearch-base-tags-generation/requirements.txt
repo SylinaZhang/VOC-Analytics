@@ -1,0 +1,3 @@
+opensearch-py
+scikit-learn
+boto3
